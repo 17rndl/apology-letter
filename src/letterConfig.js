@@ -15,9 +15,9 @@ export const letter = {
   eyebrow: 'Dear Ely,',
 
   paragraphs: [
-    'I’m sorry that I wasn’t able to show up the way you wanted and needed me to. I hope you will be able to forgive me for that. I should’ve just listened, but I made many apologies and excuses instead. If you feel like you need time for and with yourself, I will be waiting. I'll just be here,.',
+    "I'm sorry that I wasn't able to show up the way you wanted and needed me to. I hope you will be able to forgive me for that. I should've just listened, but I made many apologies and excuses instead. If you feel like you need time for and with yourself, I will be waiting. I'll just be here.",
 
-    'But if you want to talk about it with me, please do so. I want to talk to you. I want you to tell me about the things that ails you. I want you to be able to trust me once more. Please, I really want us to work this out.',
+    "But if you want to talk to me about it, please don't hesitate to do so. I want to talk to you. I want you to tell me about the things that ail you. I want you to be able to trust me once more. Please, I really want us to work this out.",
   ],
 
   // the greeting and the signature bookend the letter; no extra closing line
