@@ -6,27 +6,22 @@
 
 export const slots = {
   yourName: {
-    value: '[your name]',
+    value: 'Randel',
     hint: 'Sign it the way she calls you.',
   },
 };
 
 export const letter = {
-  eyebrow: 'For Angelyn',
+  eyebrow: 'Dear Ely,',
 
   paragraphs: [
-    'You had to ask me for support, and then ask again. You said it yourself — you were begging me for it. You should never have had to.',
+    'I’m sorry that I wasn’t able to show up the way you wanted and needed me to. I hope you will be able to forgive me for that. I should’ve just listened, but I made many apologies and excuses instead. If you feel like you need time for and with yourself, I will be waiting.',
 
-    'And I never asked what you were feeling. So you were carrying it, explaining it, and asking for it, all at once. None of that was your job.',
-
-    'You said sorry for blocking me. Please take that one back. You were hurt and you did what you needed to do — that isn’t something you owe me an apology for.',
-
-    'I won’t give you reasons; they turn into excuses. Here’s what changes instead. Once is enough — you’ll never have to ask me twice again. And I’ll ask first, instead of waiting for you to explain.',
-
-    'I’ve been asking you to talk to me. I’m going to stop asking. You don’t owe me a reply or forgiveness, tonight or ever. Whenever you want to cry it out — or never talk about it again — I’m here, and I’m not keeping score.',
+    'But if you want to talk about it with me, please do so. I want to talk to you. I want you to tell me about the things that ails you. I want you to be able to trust me once more. Please, I really want us to work this out.',
   ],
 
-  signoff: 'I’m sorry, Angelyn.',
+  // the greeting and the signature bookend the letter; no extra closing line
+  signoff: '',
   signature: '{{yourName}}',
 };
 

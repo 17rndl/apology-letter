@@ -110,13 +110,13 @@ const ApologyLetter = ({ onClose }) => {
 
             <motion.div className="letter-body" variants={body} initial="hidden" animate="show">
               {letter.paragraphs.map((text, i) => (
-                <motion.p key={i} className={i === 0 ? 'lead' : undefined} variants={line}>
+                <motion.p key={i} variants={line}>
                   {text}
                 </motion.p>
               ))}
 
               <motion.div className="letter-signoff" variants={line}>
-                <span className="signoff-line">{letter.signoff}</span>
+                {letter.signoff && <span className="signoff-line">{letter.signoff}</span>}
                 {/* name and flourish share one column, so the underline spans the
                     signature exactly at any font size or viewport width */}
                 <span className="signature-block">

@@ -140,14 +140,15 @@
     linear-gradient(180deg, transparent calc(66% - 2px), rgba(120, 95, 60, 0.06) 66%, transparent calc(66% + 2px));
 }
 
+/* a salutation, not a headline — present, but it opens the letter rather than titles it */
 .letter-eyebrow {
   position: relative;
   z-index: 1;
-  margin: 0 0 1rem;
+  margin: 0 0 1.1rem;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
   font-weight: 600;
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-size: clamp(1.3rem, 3.4vw, 1.6rem);
   line-height: 1.2;
   color: var(--ink);
 }
@@ -175,14 +176,8 @@
   margin-bottom: 0;
 }
 
-.letter-body .lead::first-letter {
-  float: left;
-  font-weight: 600;
-  font-size: 3.1em;
-  line-height: 0.82;
-  padding: 0.08em 0.1em 0 0;
-  color: var(--accent);
-}
+/* No drop cap: the letter opens on "I’m", and ::first-letter would set a giant
+   I against a stranded "’m". */
 
 .letter-signoff {
   margin-top: 1.5rem;
