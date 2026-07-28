@@ -1,0 +1,241 @@
+.true-3d-viewport {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #e5dfec; 
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+
+/* THE WALL - Oversized to encompass the screen during parallax rotation */
+.wall-plane {
+  position: absolute;
+  top: -20%; left: -20%;
+  width: 140%;
+  height: 140%;
+  background: #fdfbf7;
+  transform: translateZ(-250px); 
+  box-shadow: inset 0 0 150px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Fairy Lights */
+.svg-fairy-lights {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateZ(5px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Wall Stickers */
+.svg-wall-stickers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(2px);
+  pointer-events: none;
+}
+
+.wallpaper-pattern {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: radial-gradient(#d3cce3 2px, transparent 2px);
+  background-size: 60px 60px;
+  opacity: 0.5;
+}
+
+.sunlight-beam {
+  position: absolute; top: 0; left: 20%;
+  width: 50%; height: 100%;
+  background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg) translateZ(10px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* SVG Paintings */
+.painting-svg {
+  position: absolute;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.12));
+  transform: translateZ(30px); 
+}
+.p-landscape {
+  width: 380px;
+  top: 35%;
+  left: 20%;
+  transform: translateZ(40px) rotate(-1deg);
+}
+.p-bulletin {
+  width: 480px;
+  top: 30%;
+  right: 25%;
+  transform: translateZ(35px) rotate(2deg);
+}
+
+/* THE DESK - Oversized to encompass screen */
+.desk-plane {
+  position: absolute;
+  bottom: -30%;
+  left: -20%;
+  width: 140%;
+  height: 80%;
+  transform: translateZ(80px) rotateX(75deg);
+  transform-style: preserve-3d;
+  background: linear-gradient(to bottom, #d6b896, #a67b5b);
+  box-shadow: 0 80px 150px rgba(0,0,0,0.4);
+}
+
+.wood-texture {
+  width: 100%; height: 100%;
+  background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 2px, transparent 2px, transparent 20px);
+  opacity: 0.5;
+}
+
+/* Items sitting on the desk */
+.desk-items-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  transform-style: preserve-3d;
+}
+
+/* SVG Bouquet */
+.svg-bouquet {
+  position: absolute;
+  width: 260px;
+  top: 15%;
+  left: 20%;
+  transform: rotateX(-75deg) translateY(-130px) translateZ(10px);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 30px 25px rgba(0,0,0,0.35));
+}
+
+/* SVG Supplies */
+.svg-supplies {
+  position: absolute;
+  width: 130px;
+  top: 22%;
+  right: 28%;
+  transform: rotateX(-75deg) translateY(-50px) translateZ(5px);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 25px 20px rgba(0,0,0,0.3));
+}
+
+/* Coffee Mug */
+.svg-coffee-mug {
+  position: absolute;
+  top: 35%;
+  right: 40%;
+  width: 140px;
+  transform: rotateX(-75deg) translateY(-30px) translateZ(5px);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 20px 20px rgba(0,0,0,0.3));
+}
+
+.steam {
+  position: absolute; width: 8px; height: 40px; background: #fff;
+  border-radius: 12px; filter: blur(5px); animation: rise 3s infinite;
+  transform: rotateX(-15deg);
+}
+.s1 { top: -40px; left: 30px; }
+.s2 { top: -35px; left: 45px; animation-delay: 1.5s; }
+@keyframes rise {
+  0% { transform: translateY(0) scale(1) rotateX(-15deg); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(-50px) scale(1.6) rotateX(-15deg); opacity: 0; }
+}
+
+/* Open Book */
+.svg-open-book {
+  position: absolute;
+  width: 320px;
+  bottom: 35%;
+  right: 12%;
+  transform: translateZ(2px) rotateZ(15deg);
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.25));
+}
+
+/* Paint Palette */
+.svg-paint-palette {
+  position: absolute;
+  width: 180px;
+  top: 25%;
+  right: 20%;
+  transform: translateZ(3px) rotateZ(-25deg);
+  filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3));
+}
+
+/* Envelope Hotspot on Desk */
+.envelope-hotspot-3d {
+  position: absolute;
+  width: 240px;
+  height: 160px;
+  top: 35%;
+  left: 45%;
+  transform: translateZ(4px) rotateZ(-10deg); 
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.envelope-closed {
+  width: 100%; height: 100%;
+  background: #fdfaf3;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  overflow: hidden;
+  border: 1px solid #e6e0d4;
+  transition: box-shadow 0.3s ease;
+}
+
+.envelope-hotspot-3d:hover .envelope-closed {
+  box-shadow: 0 0 40px 15px rgba(251, 194, 235, 1), 0 10px 20px rgba(0,0,0,0.15);
+  animation: pulse-glow-env 1.5s infinite alternate;
+}
+
+/* Diagonal envelope flaps */
+.envelope-closed::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, transparent 49%, rgba(0,0,0,0.05) 50%, transparent 51%);
+}
+.envelope-closed::after {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(45deg, transparent 49%, rgba(0,0,0,0.05) 50%, transparent 51%);
+}
+
+.envelope-seal {
+  position: absolute;
+  width: 30px; height: 30px;
+  background: #b33939;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.1);
+}
+
+@keyframes pulse-glow-env {
+  0% { box-shadow: 0 0 30px 10px rgba(251, 194, 235, 0.8), 0 10px 20px rgba(0,0,0,0.15); }
+  100% { box-shadow: 0 0 50px 20px rgba(251, 194, 235, 1), 0 10px 20px rgba(0,0,0,0.15); }
+}

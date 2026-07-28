@@ -1,0 +1,123 @@
+.apology-overlay-container {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(229, 223, 236, 0.6);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.envelope-interaction-wrapper {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+/* The Envelope Back (Pocket Base) */
+.env-back {
+  position: absolute;
+  width: 400px;
+  height: 250px;
+  background: #f4ede1; /* Inside color */
+  border-radius: 4px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transform-style: preserve-3d;
+}
+
+/* The Envelope Front (Covers the letter) */
+.env-front {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #fdfaf3;
+  border-radius: 4px;
+  z-index: 2; /* Sits on top of the letter */
+  /* Diagonal cuts to look like envelope folds */
+  clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.env-seal-broken {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px; height: 15px; /* Half of the original 30x30 seal */
+  background: #b33939;
+  border-radius: 0 0 15px 15px;
+  box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
+}
+
+/* The Envelope Top Flap */
+.env-flap {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 150px;
+  background: #fdfaf3;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 3; /* Sits on top of everything when closed */
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+  backface-visibility: hidden; /* So it looks correct when rotated */
+}
+
+/* The Letter */
+.env-letter {
+  position: absolute;
+  bottom: 10px;
+  width: 360px;
+  height: 230px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  z-index: 1; /* Sits inside the pocket (behind front, in front of back) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* The Actual Text Content */
+.letter-content {
+  font-family: 'Georgia', serif;
+  color: #333333;
+  text-align: center;
+  /* Add a subtle paper texture/noise if desired, but flat white is cleaner */
+}
+
+.letter-content p {
+  margin: 14px 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
+
+.letter-content .closing {
+  margin-top: 35px;
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 40px; right: 40px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px; height: 50px;
+  display: flex; justify-content: center; align-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 101;
+}

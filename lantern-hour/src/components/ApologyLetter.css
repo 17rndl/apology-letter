@@ -1,0 +1,252 @@
+.letter {
+  position: relative;
+  width: 100%;
+}
+
+.letter-paper {
+  position: relative;
+  background: linear-gradient(180deg, var(--paper), var(--paper-deep));
+  border: 1px solid var(--paper-edge);
+  border-radius: var(--radius-card);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  color: var(--ink);
+  box-shadow:
+    0 0 0 1px rgba(255, 190, 120, 0.12),
+    0 12px 48px rgba(6, 8, 24, 0.55);
+  overflow: hidden;
+}
+
+/* paper tooth */
+.letter-paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-svg);
+  opacity: 0.3;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+/* lit from a lantern hung above, plus the two creases of a letter that was folded */
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(80% 40% at 50% 0%, rgba(255, 183, 101, 0.14), transparent 70%),
+    linear-gradient(180deg, transparent calc(33% - 2px), rgba(120, 95, 60, 0.07) 33%, transparent calc(33% + 2px)),
+    linear-gradient(180deg, transparent calc(66% - 2px), rgba(120, 95, 60, 0.07) 66%, transparent calc(66% + 2px));
+}
+
+.letter-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.letter-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  line-height: 1.2;
+  margin: 0;
+  color: var(--ink);
+}
+
+.skip-link {
+  flex-shrink: 0;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.letter-body {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 2.5vw, 1.125rem);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  max-width: 36em;
+}
+
+.letter-body p {
+  margin: 0;
+}
+
+.letter-body .lead::first-letter {
+  float: left;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--ink-accent);
+}
+
+.interpunct {
+  margin: 1.35rem 0;
+  text-align: center;
+  color: var(--lantern-amber);
+  opacity: 0.75;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* the words that are only true of them */
+.slot {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.22em;
+  line-height: 1;
+  padding: 0 0.12em;
+  color: var(--ink);
+  background: linear-gradient(transparent 58%, rgba(255, 217, 160, 0.55) 58%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.letter-signoff {
+  margin-top: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: var(--ink-soft);
+}
+
+.signoff-line {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95em;
+}
+
+.signature {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.6em;
+  line-height: 1.2;
+  margin-top: 0.35rem;
+  transform: rotate(-1.5deg);
+  color: var(--ink);
+}
+
+.signature .slot {
+  background: none;
+  font-size: 1em;
+  padding: 0;
+}
+
+.flourish {
+  width: min(200px, 60%);
+  height: 18px;
+  margin-top: 0.15rem;
+  color: var(--ink-accent);
+  opacity: 0.8;
+}
+
+/* ---------- after the letter ---------- */
+
+.letter-after {
+  margin-top: 2rem;
+  text-align: center;
+  font-family: var(--font-ui);
+  color: var(--moonlight-dim);
+}
+
+.post-reveal {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--moonlight);
+}
+
+.no-pressure {
+  margin: 0 auto;
+  max-width: 34em;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+}
+
+.ack-slot {
+  margin-top: 1.75rem;
+  min-height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ack-btn {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--moonlight);
+  background: rgba(255, 217, 160, 0.06);
+  border: 1px solid rgba(255, 205, 150, 0.25);
+  border-radius: 999px;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.ack-btn:hover,
+.ack-btn:focus-visible {
+  background: rgba(255, 217, 160, 0.12);
+  border-color: rgba(255, 205, 150, 0.45);
+}
+
+.ack-done {
+  margin: 0;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--moonlight);
+}
+
+.letter-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ghost-btn {
+  background: none;
+  border: 0;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moonlight-dim);
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.ghost-btn:hover,
+.ghost-btn:focus-visible {
+  color: var(--moonlight);
+  border-bottom-color: rgba(207, 211, 238, 0.4);
+}
+
+@media (max-width: 480px) {
+  .letter-signoff {
+    align-items: flex-start;
+  }
+  .flourish {
+    width: 160px;
+  }
+}

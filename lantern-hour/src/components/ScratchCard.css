@@ -1,0 +1,43 @@
+.scratch-card-container {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-card);
+  max-height: 600vh;
+  /* the lantern halo — lives here, not on the paper, so overflow never clips it */
+  box-shadow: 0 0 90px rgba(255, 170, 90, calc(0.26 * var(--halo-strength, 0)));
+  transition: max-height 1.4s var(--ease-settle), box-shadow 0.5s var(--ease-settle);
+}
+
+/* Before the reveal the letter sits behind a pane of glass, not a wall of it:
+   the fog is capped to a comfortable size to wipe, then the letter unfolds. */
+.scratch-card-container.is-covered {
+  max-height: min(70dvh, 560px);
+  overflow: hidden;
+}
+
+.scratch-content {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  touch-action: none;
+  cursor: grab;
+  border-radius: var(--radius-card);
+  transition: opacity 1.1s var(--ease-settle);
+}
+
+.scratch-canvas:active {
+  cursor: grabbing;
+}
+
+.scratch-canvas.revealed {
+  opacity: 0;
+  pointer-events: none;
+}

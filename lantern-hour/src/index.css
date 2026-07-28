@@ -1,0 +1,165 @@
+:root {
+  /* sky */
+  --dusk-zenith: #0b102a;
+  --dusk-upper: #141b3f;
+  --dusk-mid: #2a2b5e;
+  --dusk-lower: #4a3763;
+  --dusk-horizon: #6e4560;
+
+  /* light */
+  --lantern-core: #ffd9a0;
+  --lantern-amber: #ffb765;
+  --lantern-halo: rgba(255, 170, 90, 0.18);
+  --firefly: #ffe9b3;
+  --moonlight: #cfd3ee;
+  --moonlight-dim: #9aa0c7;
+
+  /* paper */
+  --paper: #f7f1e5;
+  --paper-deep: #f0e6d2;
+  --paper-edge: rgba(255, 205, 150, 0.35);
+  --ink: #3d3550;
+  --ink-soft: #5c5470;
+  --ink-accent: #8a5a36;
+
+  /* type */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+  --font-hand: 'Caveat', cursive;
+  --font-ui: 'Inter', system-ui, sans-serif;
+
+  /* shape + shadow */
+  --radius-card: 14px;
+  --shadow-card: 0 0 0 1px rgba(255, 190, 120, 0.12), 0 12px 48px rgba(6, 8, 24, 0.55),
+    0 0 90px var(--lantern-halo);
+  --glow-display: 0 0 24px rgba(255, 205, 150, 0.35), 0 0 2px rgba(255, 255, 255, 0.4);
+  --grain-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* motion */
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-materialize: 1.4s;
+  --dur-breath: 90s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--dusk-zenith);
+  color: var(--moonlight);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* ---------- ambient sky ---------- */
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 120% tall so the slow drift never exposes an edge */
+.sky-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10%;
+  height: 120%;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(235, 238, 255, 0.16), rgba(235, 238, 255, 0.04) 9%, transparent 13%),
+    radial-gradient(55% 40% at 76% 92%, rgba(255, 183, 101, 0.1), transparent 70%),
+    radial-gradient(120% 85% at 50% 100%, rgba(255, 171, 105, 0.16), transparent 60%),
+    linear-gradient(
+      180deg,
+      var(--dusk-zenith) 0%,
+      var(--dusk-upper) 45%,
+      var(--dusk-mid) 72%,
+      var(--dusk-lower) 90%,
+      var(--dusk-horizon) 100%
+    );
+  animation: skyBreath var(--dur-breath) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes skyBreath {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-3%);
+  }
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 65%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 65%);
+}
+
+.stars span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.stars .layer-a {
+  animation: twinkle 12s ease-in-out infinite alternate;
+}
+
+.stars .layer-b {
+  animation: twinkle 17s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.95;
+  }
+}
+
+/* dithers the dark gradient — without this it bands badly on OLED phones */
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-svg);
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--firefly);
+  box-shadow: 0 0 12px 4px rgba(255, 214, 140, 0.55), 0 0 32px 10px rgba(255, 178, 102, 0.22);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-gradient,
+  .stars .layer-a,
+  .stars .layer-b {
+    animation: none;
+  }
+}
