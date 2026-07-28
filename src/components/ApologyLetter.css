@@ -1,17 +1,23 @@
 .apology-overlay-container {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  inset: 0;
   background: rgba(229, 223, 236, 0.6);
   z-index: 100;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* flex-start + auto margins on the card: centred when it fits, and never
+     clipped off the top when the letter is taller than the screen */
+  align-items: flex-start;
+  padding: clamp(1rem, 3vw, 1.75rem);
   perspective: 1200px;
+  overflow-y: auto;
 }
+
+/* ---------- the envelope ---------- */
 
 .envelope-interaction-wrapper {
   position: relative;
-  width: 400px;
+  width: min(90vw, 400px);
   height: 250px;
   display: flex;
   justify-content: center;
@@ -19,105 +25,223 @@
   transform-style: preserve-3d;
 }
 
-/* The Envelope Back (Pocket Base) */
 .env-back {
   position: absolute;
-  width: 400px;
-  height: 250px;
-  background: #f4ede1; /* Inside color */
+  inset: 0;
+  background: #f4ede1;
   border-radius: 4px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   transform-style: preserve-3d;
 }
 
-/* The Envelope Front (Covers the letter) */
 .env-front {
   position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   background: #fdfaf3;
   border-radius: 4px;
-  z-index: 2; /* Sits on top of the letter */
-  /* Diagonal cuts to look like envelope folds */
+  z-index: 2;
+  /* diagonal cuts, so it reads as the folded front of an envelope */
   clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
-  box-shadow: inset 0 5px 15px rgba(0,0,0,0.08);
+  box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .env-seal-broken {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 30px; height: 15px; /* Half of the original 30x30 seal */
+  width: 30px;
+  height: 15px;
   background: #b33939;
   border-radius: 0 0 15px 15px;
-  box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* The Envelope Top Flap */
 .env-flap {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 150px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
   background: #fdfaf3;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  z-index: 3; /* Sits on top of everything when closed */
-  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
-  backface-visibility: hidden; /* So it looks correct when rotated */
+  z-index: 3;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+  backface-visibility: hidden;
 }
 
-/* The Letter */
+/* the folded sheet glimpsed inside the pocket — it holds no text */
 .env-letter {
   position: absolute;
   bottom: 10px;
+  left: 50%;
+  margin-left: -180px;
   width: 360px;
+  max-width: 92%;
   height: 230px;
   background: #ffffff;
   border-radius: 4px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-  z-index: 1; /* Sits inside the pocket (behind front, in front of back) */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+/* ---------- the letter itself ---------- */
+
+.letter-card {
+  --paper: #fdfaf6;
+  --paper-deep: #f5eddf;
+  --ink: #4a4351;
+  --ink-soft: #7b7387;
+  --accent: #b0837f;
+  /* fine tooth you feel, and long fibres you only half-see */
+  --tooth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibre: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+
+  position: relative;
+  width: min(100%, 40rem);
+  margin: auto;
+  padding: clamp(1.5rem, 4vw, 2.4rem);
+  border-radius: 6px;
+  color: var(--ink);
+  /* real paper is never one flat colour — uneven pulp shows as soft warm patches */
+  background:
+    radial-gradient(62% 42% at 16% 10%, rgba(255, 252, 245, 0.9), transparent 70%),
+    radial-gradient(52% 36% at 86% 26%, rgba(242, 232, 214, 0.75), transparent 72%),
+    radial-gradient(70% 46% at 38% 92%, rgba(252, 246, 234, 0.8), transparent 70%),
+    linear-gradient(180deg, var(--paper), var(--paper-deep));
+  box-shadow:
+    0 24px 60px rgba(88, 72, 96, 0.28),
+    0 2px 8px rgba(88, 72, 96, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -22px 36px -26px rgba(120, 95, 60, 0.35);
+}
+
+.letter-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background-image: var(--tooth), var(--fibre);
+  background-size: 160px 160px, 420px 420px;
+  opacity: 0.32;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+/* the two creases of a sheet that was folded into that envelope */
+.letter-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent calc(33% - 2px), rgba(120, 95, 60, 0.06) 33%, transparent calc(33% + 2px)),
+    linear-gradient(180deg, transparent calc(66% - 2px), rgba(120, 95, 60, 0.06) 66%, transparent calc(66% + 2px));
+}
+
+.letter-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.letter-body {
+  position: relative;
+  z-index: 1;
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(1rem, 2.4vw, 1.0625rem);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  max-width: 34em;
+  /* A letter is read, not admired: ranged left, never centred. Centring anything
+     past two lines gives every line a different starting point to find. */
+  text-align: left;
+  hyphens: none;
+}
+
+.letter-body p {
+  margin: 0 0 1rem;
+  text-wrap: pretty;
+}
+
+.letter-body p:last-of-type {
+  margin-bottom: 0;
+}
+
+.letter-body .lead::first-letter {
+  float: left;
+  font-weight: 600;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--accent);
+}
+
+.letter-signoff {
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  box-sizing: border-box;
+  align-items: flex-end;
+  text-align: right;
+  color: var(--ink-soft);
 }
 
-/* The Actual Text Content */
-.letter-content {
-  font-family: 'Georgia', serif;
-  color: #333333;
-  text-align: center;
-  /* Add a subtle paper texture/noise if desired, but flat white is cleaner */
-}
-
-.letter-content p {
-  margin: 14px 0;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  letter-spacing: 0.5px;
-}
-
-.letter-content .closing {
-  margin-top: 35px;
+.signoff-line {
+  font-family: 'Lora', Georgia, serif;
   font-style: italic;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 0.95em;
 }
 
-/* Close Button */
+/* one shrink-to-fit column, so the flourish is exactly as wide as the name above it */
+.signature-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 0.4rem;
+  transform: rotate(-1.5deg);
+  transform-origin: right center;
+}
+
+.signature {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  font-size: 1.75em;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.flourish {
+  display: block;
+  width: 100%;
+  height: 14px;
+  margin-top: 0.1rem;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+/* ---------- close ---------- */
+
 .close-button {
-  position: absolute;
-  top: 40px; right: 40px;
+  position: fixed;
+  top: clamp(1rem, 3vw, 2.5rem);
+  right: clamp(1rem, 3vw, 2.5rem);
   background: white;
   border: none;
   border-radius: 50%;
-  width: 50px; height: 50px;
-  display: flex; justify-content: center; align-items: center;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   z-index: 101;
 }

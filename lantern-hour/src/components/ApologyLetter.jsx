@@ -103,30 +103,34 @@ const ApologyLetter = ({ revealed, paced = true, onReplay, onRest }) => {
 
           <motion.div className="letter-signoff" variants={item}>
             <span className="signoff-line">{letter.signoff}</span>
-            <span className="signature">
-              <Line text={letter.signature} />
+            {/* name and flourish share one column so the underline always spans the
+                signature exactly, at any font size or viewport width */}
+            <span className="signature-block">
+              <span className="signature">
+                <Line text={letter.signature} />
+              </span>
+              <svg
+                className="flourish"
+                viewBox="0 0 220 22"
+                fill="none"
+                aria-hidden="true"
+                preserveAspectRatio="none"
+              >
+                <motion.path
+                  d="M4 15C34 6 62 4 92 9c22 4 36 10 58 9 24-1 42-7 66-14"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={revealed ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+                  transition={{
+                    duration: instant ? 0.5 : 2.2,
+                    delay: instant ? 0.2 : signoffAt + 0.4,
+                    ease: 'easeInOut',
+                  }}
+                />
+              </svg>
             </span>
-            <svg
-              className="flourish"
-              viewBox="0 0 220 22"
-              fill="none"
-              aria-hidden="true"
-              preserveAspectRatio="none"
-            >
-              <motion.path
-                d="M4 15C34 6 62 4 92 9c22 4 36 10 58 9 24-1 42-7 66-14"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={revealed ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-                transition={{
-                  duration: instant ? 0.5 : 2.2,
-                  delay: instant ? 0.2 : signoffAt + 0.4,
-                  ease: 'easeInOut',
-                }}
-              />
-            </svg>
           </motion.div>
         </motion.div>
       </div>

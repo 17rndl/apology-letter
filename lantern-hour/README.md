@@ -39,8 +39,25 @@ else — `App.jsx` only needs `onReveal`. The letter, the config-driven slots, t
 the after-letter release (`no-pressure` note, "I read it.", goodnight) are independent of how
 the reveal is triggered.
 
-## Before sending the link
+## The letter
 
-`src/letterConfig.js` still holds nine `[bracketed]` placeholders. The app logs a dev-console
-warning listing every unfilled one. Fill them all — the guidance for each slot is in the file
-next to it, and in `REDESIGN_PLAN.md` §1.2.
+`src/letterConfig.js` now holds the real letter for Angelyn, not the template. It is written to
+one situation: she asked for emotional support, had to ask again, and did not get it; nobody
+asked what she was feeling; she blocked him; she then apologised for blocking.
+
+Deliberate choices worth keeping if you edit it:
+
+- **The harm is named in the first three sentences.** No wind-up, no scene-setting.
+- **Her apology for blocking is handed back** ("Please take that one back"). She protected
+  herself from being hurt; that is not a thing she owes an apology for.
+- **The letter stops asking.** Its sixth paragraph explicitly retires "talk to me, please" —
+  after someone has already had to beg once, another ask is more of the same pressure.
+- **No reasons are given.** Explaining turns into excusing by the second sentence, and the
+  letter says so instead of doing it.
+- **Repair is two checkable behaviours**, not a better person in general: once is enough, and
+  he asks first.
+- **Nothing narrates the effort.** The site never mentions itself. Effort should be visible in
+  the letter, never itemised by it.
+
+The one remaining placeholder is `yourName`. The app logs a dev-console warning while it is
+unfilled.
