@@ -2,7 +2,7 @@ import React from 'react';
 
 const CoffeeMugSVG = ({ className }) => {
   return (
-    <svg viewBox="0 0 200 240" className={className} xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
+    <svg viewBox="0 0 200 220" className={className} xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
       <defs>
         {/* Volumetric Mug Gradient */}
         <linearGradient id="mugBody" x1="0%" y1="0%" x2="100%" y2="0%">

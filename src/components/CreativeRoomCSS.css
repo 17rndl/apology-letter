@@ -121,10 +121,10 @@
 /* SVG Bouquet */
 .svg-bouquet {
   position: absolute;
-  width: 260px;
-  top: 15%;
-  left: 20%;
-  transform: rotateX(-75deg) translateY(-130px) translateZ(10px);
+  width: 160px;
+  top: 25%;
+  left: 30%;
+  transform: rotateX(-75deg) translateZ(5px);
   transform-origin: bottom center;
   filter: drop-shadow(0 30px 25px rgba(0,0,0,0.35));
 }
@@ -134,9 +134,9 @@
 .svg-coffee-mug {
   position: absolute;
   top: 35%;
-  right: 40%;
-  width: 140px;
-  transform: rotateX(-75deg) translateY(-30px) translateZ(5px);
+  right: 35%;
+  width: 100px;
+  transform: rotateX(-75deg) translateZ(3px);
   transform-origin: bottom center;
   filter: drop-shadow(0 20px 20px rgba(0,0,0,0.3));
 }
