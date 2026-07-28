@@ -1,10 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import BouquetSVG from './SVGArt/BouquetSVG';
-import ArtSuppliesSVG from './SVGArt/ArtSuppliesSVG';
 import CoffeeMugSVG from './SVGArt/CoffeeMugSVG';
-import OpenBookSVG from './SVGArt/OpenBookSVG';
-import PaintPaletteSVG from './SVGArt/PaintPaletteSVG';
 import { LandscapePaintingSVG } from './SVGArt/PaintingsSVG';
 import BulletinBoardSVG from './SVGArt/BulletinBoardSVG';
 import WallStickersSVG from './SVGArt/WallStickersSVG';
@@ -57,9 +54,7 @@ const CreativeRoomCSS = ({ onInteract }) => {
           
           <div className="desk-items-container">
             <BouquetSVG className="svg-bouquet" />
-            <ArtSuppliesSVG className="svg-supplies" />
-            <PaintPaletteSVG className="svg-paint-palette" />
-            <OpenBookSVG className="svg-open-book" />
+
             
             <div className="svg-coffee-mug">
               <CoffeeMugSVG />
